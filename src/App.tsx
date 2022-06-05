@@ -24,7 +24,7 @@ function App() {
     const tasks_3: TaskType [] = [
         {id: 7, title: "Meat", isDone: true},
         {id: 8, title: "Fish", isDone: true},
-        {id: 9, title: "Beer", isDone: false}
+        {id: 9, title: "Beer", isDone: false},
     ]
     const tasks_4: TaskType [] = [
         {id: 10, title: "JS", isDone: true},
