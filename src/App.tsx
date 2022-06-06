@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import ToDoList, {TaskType} from "./ToDoList";
+import {v1} from "uuid";
 
 // CRUD
 // create
@@ -9,48 +10,49 @@ import ToDoList, {TaskType} from "./ToDoList";
 // delete
 
 function App() {
+    // console.log(v1());
     //BLL
+//    const [tasks, setTasks] = useState<Array<TaskType>>(initialState [
+//        {id: 1, title: "HTML&CSS", isDone: true},
+//        {id: 2, title: "JS/TS", isDone: true},
+//        {id: 3, title: "React", isDone: false},
+//]
+//     );
 
-    const tasks_1: TaskType [] = [
-        {id: 1, title: "Run", isDone: true},
-        {id: 2, title: "Swim", isDone: true},
-        {id: 3, title: "Sleep", isDone: false}
+    // const [filter, setFilter] = useState<FilterValuesType>("all")
+
+
+
+    // const addTask = () => [
+    //     const newTask: TaskType = {
+    //         id: number,
+    //         title: "new task",
+    //         isDone: false
+    //     }
+    //     setTasks([newTask, ...tasks])
+    // ]
+
+    const [tasks, setTasks] = useState<Array<TaskType>>([
+        {id: 1, title: "HTML@CSS", isDone: true},
+        {id: 2, title: "JS/TS", isDone: true},
+        {id: 3, title: "React", isDone: false}
     ]
-    const tasks_2: TaskType [] = [
-        {id: 4, title: "HTML&CSS", isDone: true},
-        {id: 5, title: "JS/TS", isDone: true},
-        {id: 6, title: "React", isDone: false}
-    ]
-    const tasks_3: TaskType [] = [
-        {id: 7, title: "Meat", isDone: true},
-        {id: 8, title: "Fish", isDone: true},
-        {id: 9, title: "Beer", isDone: false},
-    ]
-    const tasks_4: TaskType [] = [
-        {id: 10, title: "JS", isDone: true},
-        {id: 11, title: "JS Native", isDone: true},
-        {id: 12, title: "Node.Js", isDone: false}
-    ]
+    )
+
+    const removeTask = (taskID: number) => {
+        const filtredTasks = tasks.filter(t => t.id !== taskID)
+        setTasks(filtredTasks)
+    }
+
     return (
         <div className="App">
             <ToDoList
                 title={"What to do"}
-                tasks={tasks_1}
-            />
-            <ToDoList
-                title={"What to learn"}
-                tasks={tasks_2}
-            />
-            <ToDoList
-                title={"What to buy"}
-                tasks={tasks_3}
-            />
-            <ToDoList
-                title={"What to read"}
-                tasks={tasks_4}
+                tasks={tasks}
+                removeTask={removeTask}
             />
         </div>
-    );
+    )
 }
 
 export default App;

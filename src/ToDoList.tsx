@@ -9,14 +9,16 @@ export type TaskType = {
 
 export type ToDoListPropsType = {
     title: string
-    tasks: Array<TaskType>
+    tasks: TaskType []
+    removeTask: (taskID: number) => void
 }
 const ToDoList  = (props: ToDoListPropsType) => {
-    const tasksJSX = props.tasks.map(task => {
+    const tasksJSX = props.tasks.map(t => {
         return (
-            <li key={task.id}>
-                <input type="checkbox" checked={task.isDone}/>
-                <span>{task.title}</span>
+            <li key={t.id}>
+                <input type="checkbox" checked={t.isDone}/>
+                <span>{t.title}</span>
+                <button onClick={()=>props.removeTask(t.id)}>x</button>
             </li>
         )
     })
