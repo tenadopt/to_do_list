@@ -9,6 +9,8 @@ import {v1} from "uuid";
 // update
 // delete
 
+type FilterValuesType = "all" | "active" | "completed"
+
 function App() {
     // console.log(v1());
     //BLL
@@ -32,6 +34,8 @@ function App() {
     //     setTasks([newTask, ...tasks])
     // ]
 
+
+
     const [tasks, setTasks] = useState<Array<TaskType>>([
         {id: 1, title: "HTML@CSS", isDone: true},
         {id: 2, title: "JS/TS", isDone: true},
@@ -44,11 +48,21 @@ function App() {
         setTasks(filtredTasks)
     }
 
+    const [filter, setFilter] = useState<FilterValuesType>("completed")
+
+    let tasksForRender = tasks
+    if(filter === "active"){
+        tasksForRender = tasks.filter(t => t.isDone === false)
+    }
+    if(filter === "completed") {
+        tasksForRender  = tasks.filter(t => t.isDone === true)
+    }
+
     return (
         <div className="App">
             <ToDoList
                 title={"What to do"}
-                tasks={tasks}
+                tasks={tasksForRender}
                 removeTask={removeTask}
             />
         </div>
