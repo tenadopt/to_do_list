@@ -16,6 +16,7 @@ export type ToDoListPropsType = {
     removeTask: (taskID: string) => void
     changeToDoListFilter: (filter: FilterValuesType) => void
     changeTaskStatus: (taskID: string, isDone: boolean) => void
+    setLastState: () => void
 }
 const ToDoList = (props: ToDoListPropsType) => {
 
@@ -66,7 +67,10 @@ const ToDoList = (props: ToDoListPropsType) => {
 
     return (
         <div>
-            <h3>{props.title}</h3>
+            <h3>
+                {props.title}
+                <button onClick={props.setLastState}>Undo</button>
+            </h3>
             <div>
                 <input
                     value={title}

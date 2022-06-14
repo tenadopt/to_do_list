@@ -25,9 +25,12 @@ function App() {
     )
 
     const [filter, setFilter] = useState<FilterValuesType>("completed")
+    const [state, setState] = useState<Array<TaskType>>(tasks)
+    let stateWillBack = tasks
 
     const removeTask = (taskID: string) => {
         const filtredTasks = tasks.filter(t => t.id !== taskID)
+        setState(tasks)
         setTasks(filtredTasks)
     }
 
@@ -37,7 +40,12 @@ function App() {
             title: title,
             isDone: false
         }
+        setState(tasks)
         setTasks([newTask,...tasks])
+    }
+
+    const setLastState = () => {
+        setTasks(state)
     }
 
     const changeTaskStatus = (taskID: string, isDone: boolean) => {
@@ -66,6 +74,7 @@ function App() {
                 removeTask={removeTask}
                 changeToDoListFilter={changeToDoListFilter}
                 changeTaskStatus={changeTaskStatus}
+                setLastState={setLastState}
             />
         </div>
     )
