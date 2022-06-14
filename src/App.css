@@ -22,3 +22,19 @@
   border: 2px solid red;
   outline: none;
 }
+.isDone {
+  text-decoration: line-through;
+  color: gray;
+}
+.task {
+  font-weight: bold;
+}
+.active {
+  background-color: darkslategray;
+  color: white;
+  font-weight: bold;
+}
+.error {
+  border: 2px solid red;
+  outline: none;
+}
